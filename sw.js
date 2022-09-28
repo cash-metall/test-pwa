@@ -1,40 +1,9 @@
 'use strict';
+importScripts('sw-toolbox.js');
+toolbox.precache(["index.html","style/style.css"]);
 
-const staticCacheName = 'site-static-v1';
-const assets = [
-  '/',
-  '/index.html',
-  '/assets/js/ui.js',
-  '/assets/css/main.css',
-  '/assets/images/background-home.jpg',
-  'https://fonts.googleapis.com/css?family=Lato:300,400,700',
-];
-// событие install
-self.addEventListener('install', evt => {
-  evt.waitUntil(
-    caches.open(staticCacheName).then((cache) => {
-      console.log('caching shell assets');
-      cache.addAll(assets);
-    })
-  );
-});
-// событие activate
-self.addEventListener('activate', evt => {
-  evt.waitUntil(
-    caches.keys().then(keys => {
-      return Promise.all(keys
-        .filter(key => key !== staticCacheName)
-        .map(key => caches.delete(key))
-      );
-    })
-  );
-});
-// событие fetch
-self.addEventListener('fetch', evt => {
-  evt.respondWith(
-    caches.match(evt.request).then(cacheRes => {
-      return cacheRes || fetch(evt.request);
-    })
-  );
-});
+toolbox.router.get('/images/*', toolbox.cacheFirst);
 
+toolbox.router.get('/*', toolbox.networkFirst, {
+  networkTimeoutSeconds: 5
+});
