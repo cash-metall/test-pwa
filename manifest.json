@@ -1,0 +1,37 @@
+{
+  "background_color": "#ff7b00",
+  "description": "description",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "subaru-test",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "subaru-test",
+  "start_url": "/",
+  "theme_color": "#000000",
+  "categories": [],
+  "screenshots": [],
+  "shortcuts": [],
+  "icons":[
+    {
+      "src":"256.png",
+      "size":"256x256"
+    },
+    {
+      "src":"512.png",
+      "size":"512x512"
+    },
+    {
+      "src":"512.png",
+      "size":"512x512"
+    },
+    {
+      "src":"44.png",
+      "size":"44x44"
+    }, 
+    {
+      "src":"89.png",
+      "size":"89x89"
+    },
+  ]
+}
