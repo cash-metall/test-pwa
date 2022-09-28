@@ -5,23 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 	<link rel="manifest" href="/manifest.json">
-	<script type="text/javascript">
-const CACHE = "index.html";
-
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
-
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
-
-workbox.routing.registerRoute(
-  new RegExp('/*'),
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: CACHE
-  })
-);
+	<link rel="apple-touch-icon" href="/89.png">
+<meta name="apple-mobile-web-app-status-bar" content="#FFE1C4">
+<meta name="theme-color" content="#FFE1C4">
+<script src="/app.js"></script>
+	<script >
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js')
+    .then(reg => console.log('service worker registered'))
+    .catch(err => console.log('service worker not registered', err));
+}
 	</script>
 </head>
 <script>
